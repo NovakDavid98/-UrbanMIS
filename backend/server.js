@@ -30,8 +30,10 @@ import plannerRoutes from './routes/planner.js';
 import ragRoutes from './routes/rag.js';
 import geoRoutes from './routes/geo.js';
 import dataRepairRoutes from './routes/dataRepair.js';
+import licenseRoutes from './routes/license.js';
 import { authLimiter, apiLimiter } from './middleware/rateLimiter.js';
 import { geoblock } from './middleware/geoblock.js';
+import { initializeLicense, addLicenseHeaders } from './middleware/license.js';
 
 // Load environment variables
 dotenv.config();
@@ -153,6 +155,7 @@ app.use('/api/planner', plannerRoutes);
 app.use('/api/rag', ragRoutes);
 app.use('/api/geo', geoRoutes);
 app.use('/api/data-repair', dataRepairRoutes);
+app.use('/api/license', licenseRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -412,11 +415,17 @@ process.on('SIGINT', () => {
 });
 
 // Start server
-server.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`📊 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
-    console.log(`🛡️  Rate limiting: ${process.env.NODE_ENV === 'development' ? 'DISABLED' : 'ENABLED'}`);
+server.listen(PORT, async () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`API Base URL: http://localhost:${PORT}/api`);
+
+    // Initialize license system
+    try {
+        await initializeLicense();
+    } catch (e) {
+        console.log('License check skipped (offline mode)');
+    }
 });
 
 export default app;
