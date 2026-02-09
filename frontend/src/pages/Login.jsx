@@ -42,7 +42,7 @@ function Login() {
               Vítejte zpět
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              Centrální Mozek CEHUPO
+              UrbanMIS
             </p>
           </div>
 
@@ -155,7 +155,7 @@ function Login() {
             </span>
           </h1>
           <p className="text-indigo-200 text-lg leading-relaxed">
-            Moderní systém pro centrální evidenci, hlášení a analýzu dat pro CEHUPO.
+            Open-source management system for streetwork and humanitarian organizations.
             Bezpečné, rychlé a přehledné.
           </p>
 

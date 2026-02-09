@@ -62,7 +62,7 @@ function AIDisabledModal({ isOpen, onClose }) {
                   {/* Description */}
                   <div className="space-y-3 text-sm text-gray-600">
                     <p className="leading-relaxed">
-                      Funkce <span className="font-semibold text-purple-600">chytrého vyhledávání</span> je v demo verzi aplikace <span className="font-semibold">Centrální Mozek</span> dočasně vypnuta.
+                      The <span className="font-semibold text-purple-600">smart search</span> feature is temporarily disabled in the demo version of <span className="font-semibold">UrbanMIS</span>.
                     </p>
 
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-left">

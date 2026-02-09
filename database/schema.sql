@@ -1,8 +1,7 @@
 -- =================================================================================
--- CENTRÁLNÍ MOZEK CEHUPO - DATABASE SCHEMA
+-- URBANMIS - DATABASE SCHEMA
 -- =================================================================================
--- Modern, comprehensive database design for client management system
--- Based on IS PePa features with improved structure
+-- Open-source database design for streetwork and humanitarian NGO management
 -- =================================================================================
 
 -- Enable UUID extension
@@ -451,17 +450,17 @@ CREATE TRIGGER update_daily_records_updated_at BEFORE UPDATE ON daily_records
     FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 -- =================================================================================
--- INITIAL ADMIN USER (password: admin123 - CHANGE IN PRODUCTION!)
+-- INITIAL ADMIN USER (password: admin123 - CHANGE IN PRODUCTION)
 -- =================================================================================
 
--- Password hash for 'admin123' using bcrypt (change this in production!)
+-- Password hash for 'admin123' using bcrypt (MUST be changed after first login)
 INSERT INTO users (username, email, password_hash, first_name, last_name, role) 
 VALUES (
     'admin',
-    'admin@cehupo.cz',
+    'admin@example.org',
     '$2b$10$rBV2KLV5P7ZgKPQD9YM0me7qVHQqCpqT5GvQyU0VZ0EVMQKJ0XYAK',
-    'Admin',
-    'CEHUPO',
+    'System',
+    'Administrator',
     'admin'
 );
 

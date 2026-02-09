@@ -87,7 +87,7 @@ function AddWorkerModal({ isOpen, onClose, onWorkerAdded }) {
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Backdrop */}
-      <div 
+      <div
         className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
         onClick={handleClose}
       />
@@ -171,7 +171,7 @@ function AddWorkerModal({ isOpen, onClose, onWorkerAdded }) {
                       className="input"
                       value={formData.email}
                       onChange={(e) => handleChange('email', e.target.value)}
-                      placeholder="jan.novak@cehupo.cz"
+                      placeholder="user@example.org"
                     />
                   </div>
 
@@ -228,22 +228,20 @@ function AddWorkerModal({ isOpen, onClose, onWorkerAdded }) {
                     />
                     <div className="mt-2">
                       <div className="flex items-center space-x-2 text-xs">
-                        <div className={`h-1 flex-1 rounded-full ${
-                          formData.password.length === 0 ? 'bg-gray-200' :
-                          formData.password.length < 6 ? 'bg-red-400' :
-                          formData.password.length < 10 ? 'bg-yellow-400' :
-                          'bg-green-400'
-                        }`} />
-                        <span className={`${
-                          formData.password.length === 0 ? 'text-gray-500' :
-                          formData.password.length < 6 ? 'text-red-600' :
-                          formData.password.length < 10 ? 'text-yellow-600' :
-                          'text-green-600'
-                        }`}>
+                        <div className={`h-1 flex-1 rounded-full ${formData.password.length === 0 ? 'bg-gray-200' :
+                            formData.password.length < 6 ? 'bg-red-400' :
+                              formData.password.length < 10 ? 'bg-yellow-400' :
+                                'bg-green-400'
+                          }`} />
+                        <span className={`${formData.password.length === 0 ? 'text-gray-500' :
+                            formData.password.length < 6 ? 'text-red-600' :
+                              formData.password.length < 10 ? 'text-yellow-600' :
+                                'text-green-600'
+                          }`}>
                           {formData.password.length === 0 ? 'Zadejte heslo' :
-                           formData.password.length < 6 ? 'Slabé' :
-                           formData.password.length < 10 ? 'Dobré' :
-                           'Silné'}
+                            formData.password.length < 6 ? 'Slabé' :
+                              formData.password.length < 10 ? 'Dobré' :
+                                'Silné'}
                         </span>
                       </div>
                     </div>
@@ -315,14 +313,13 @@ function AddWorkerModal({ isOpen, onClose, onWorkerAdded }) {
                       </div>
                       <div className="flex justify-between">
                         <span className="text-gray-600">Role:</span>
-                        <span className={`badge ${
-                          formData.role === 'admin' ? 'badge-error' :
-                          formData.role === 'worker' ? 'badge-primary' :
-                          'badge-gray'
-                        }`}>
+                        <span className={`badge ${formData.role === 'admin' ? 'badge-error' :
+                            formData.role === 'worker' ? 'badge-primary' :
+                              'badge-gray'
+                          }`}>
                           {formData.role === 'admin' ? 'Administrátor' :
-                           formData.role === 'worker' ? 'Pracovník' :
-                           'Pozorovatel'}
+                            formData.role === 'worker' ? 'Pracovník' :
+                              'Pozorovatel'}
                         </span>
                       </div>
                     </div>
@@ -337,7 +334,7 @@ function AddWorkerModal({ isOpen, onClose, onWorkerAdded }) {
                     <div className="flex-1">
                       <h4 className="text-sm font-medium text-blue-900">Informace</h4>
                       <p className="text-sm text-blue-700 mt-1">
-                        Po vytvoření účtu obdrží pracovník přihlašovací údaje. 
+                        Po vytvoření účtu obdrží pracovník přihlašovací údaje.
                         Heslo je možné změnit v nastavení profilu.
                       </p>
                     </div>

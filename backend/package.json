@@ -1,7 +1,7 @@
 {
-  "name": "centralnimozekcehupo-backend",
+  "name": "urbanmis-backend",
   "version": "1.0.0",
-  "description": "Centrální Mozek CEHUPO - Modern Client Management System Backend",
+  "description": "UrbanMIS - Open-source Management System for Streetwork NGOs",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -11,8 +11,10 @@
     "db:import": "node scripts/import-pepa-data.js"
   },
   "keywords": [
-    "cehupo",
+    "urbanmis",
+    "ngo",
     "client-management",
+    "streetwork",
     "social-services"
   ],
   "author": "David N.",

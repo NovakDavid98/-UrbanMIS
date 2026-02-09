@@ -184,8 +184,8 @@ function MainLayout() {
                 <BrainIcon className="w-6 h-6 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-bold text-white">Centrální Mozek</span>
-                <span className="text-xs text-slate-400">CEHUPO</span>
+                <span className="text-sm font-bold text-white">UrbanMIS</span>
+                <span className="text-xs text-slate-400">Streetwork</span>
               </div>
             </div>
           )}
@@ -318,8 +318,8 @@ function MainLayout() {
               <BrainIcon className="w-6 h-6 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-white">Centrální Mozek</span>
-              <span className="text-xs text-slate-400">CEHUPO</span>
+              <span className="text-sm font-bold text-white">UrbanMIS</span>
+              <span className="text-xs text-slate-400">Streetwork</span>
             </div>
           </div>
           <button
@@ -417,7 +417,7 @@ function MainLayout() {
           <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
             <BrainIcon className="w-5 h-5 text-white" />
           </div>
-          <span className="text-sm font-bold text-gray-900">Centrální Mozek</span>
+          <span className="text-sm font-bold text-gray-900">UrbanMIS</span>
         </div>
         <div className="w-8"></div>
       </div>

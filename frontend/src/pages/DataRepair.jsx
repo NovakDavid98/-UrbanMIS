@@ -215,8 +215,8 @@ const DataRepair = () => {
                     <button
                         onClick={() => setActiveTab('visas')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'visas'
-                                ? 'border-blue-500 text-blue-600'
-                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            ? 'border-blue-500 text-blue-600'
+                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                             }`}
                     >
                         Víza
@@ -224,8 +224,8 @@ const DataRepair = () => {
                     <button
                         onClick={() => setActiveTab('addresses')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'addresses'
-                                ? 'border-blue-500 text-blue-600'
-                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            ? 'border-blue-500 text-blue-600'
+                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                             }`}
                     >
                         Adresy (customer)
@@ -233,8 +233,8 @@ const DataRepair = () => {
                     <button
                         onClick={() => setActiveTab('map')}
                         className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'map'
-                                ? 'border-blue-500 text-blue-600'
-                                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                            ? 'border-blue-500 text-blue-600'
+                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                             }`}
                     >
                         Mapa (chyby)
@@ -347,7 +347,7 @@ const DataRepair = () => {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                             <div className="text-2xl font-bold text-blue-600">{addressData.stats.total_scraped || 0}</div>
-                            <div className="text-sm text-gray-500">Celkem v Cehupo</div>
+                            <div className="text-sm text-gray-500">Total Scraped</div>
                         </div>
                         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                             <div className="text-2xl font-bold text-green-600">{addressData.stats.total_matched || 0}</div>
@@ -419,7 +419,7 @@ const DataRepair = () => {
 
                         {addressData.stats.scraped_at && (
                             <div className="mt-3 text-xs text-gray-400">
-                                Data z Cehupo stažena: {new Date(addressData.stats.scraped_at).toLocaleString('cs-CZ')}
+                                External data scraped: {new Date(addressData.stats.scraped_at).toLocaleString('cs-CZ')}
                             </div>
                         )}
                     </div>
@@ -475,14 +475,14 @@ const DataRepair = () => {
                                             </th>
                                             <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Klient</th>
                                             <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aktuální adresa (DB)</th>
-                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Adresa z Cehupo</th>
+                                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">External Address</th>
                                             <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Stav</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white divide-y divide-gray-200">
                                         {addressData.addresses?.map((item) => (
                                             <tr
-                                                key={item.cehupo_id}
+                                                key={item.external_id || item.cehupo_id}
                                                 className={`hover:bg-gray-50 ${selectedAddresses[item.local_client_id] ? 'bg-blue-50' : ''}`}
                                             >
                                                 <td className="px-4 py-3">
@@ -500,7 +500,7 @@ const DataRepair = () => {
                                                         {item.local_first_name || item.scraped_first_name} {item.local_last_name || item.scraped_last_name}
                                                     </div>
                                                     <div className="text-xs text-gray-400">
-                                                        Cehupo ID: {item.cehupo_id}
+                                                        External ID: {item.external_id || item.cehupo_id}
                                                     </div>
                                                 </td>
                                                 <td className="px-4 py-3">
