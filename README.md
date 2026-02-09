@@ -33,12 +33,39 @@ UrbanMIS is an open-source Management Information System designed for streetwork
 
 ## Getting Started
 
-### Prerequisites
+### Quick Start with Docker
+
+The fastest way to deploy UrbanMIS:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/NovakDavid98/-UrbanMIS.git
+   cd UrbanMIS
+   ```
+
+2. Configure environment:
+   ```bash
+   cp .env.docker.example .env
+   # Edit .env with secure passwords
+   ```
+
+3. Start the application:
+   ```bash
+   docker-compose up -d
+   ```
+
+The application will be available at `http://localhost`.
+
+Default credentials: `admin` / `admin123` (change immediately after first login).
+
+### Manual Installation
+
+#### Prerequisites
 - Node.js v18 or higher
 - PostgreSQL 14 or higher
 - npm
 
-### Installation
+#### Installation
 
 1. Clone the repository:
    ```bash
