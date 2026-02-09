@@ -1,7 +1,7 @@
 import express from 'express';
 import { getLicenseState, isFeatureEnabled } from '../middleware/license.js';
-import auth from '../middleware/auth.js';
-import adminOnly from '../middleware/adminOnly.js';
+import { authenticateToken as auth } from '../middleware/auth.js';
+import { adminOnly } from '../middleware/adminOnly.js';
 
 const router = express.Router();
 

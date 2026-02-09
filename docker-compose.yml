@@ -33,6 +33,7 @@ services:
       DB_USER: ${DB_USER:-urbanmis}
       DB_PASSWORD: ${DB_PASSWORD:-changeme}
       JWT_SECRET: ${JWT_SECRET:-changeme_jwt_secret}
+      CORS_ORIGIN: "http://localhost:31236,http://localhost:5173,http://localhost:31235,http://localhost:8080"
     ports:
       - "3001:3001"
     depends_on:

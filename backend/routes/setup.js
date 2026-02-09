@@ -30,7 +30,13 @@ router.get('/status', (req, res) => {
 
 // Test database connection
 router.post('/test-db', async (req, res) => {
-    const { host, port, database, user, password } = req.body;
+    let { host, port, database, user, password } = req.body;
+
+    // Fix for Docker: Override localhost if DB_HOST is set
+    if ((host === 'localhost' || host === '127.0.0.1') && process.env.DB_HOST && process.env.DB_HOST !== 'localhost') {
+        console.log(`Overriding host '${host}' with '${process.env.DB_HOST}'`);
+        host = process.env.DB_HOST;
+    }
 
     try {
         const pg = await import('pg');
@@ -64,6 +70,12 @@ router.post('/initialize', async (req, res) => {
         // Validate required fields
         if (!database?.user || !database?.password || !admin?.email || !admin?.password) {
             return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        // Fix for Docker: Override localhost if DB_HOST is set
+        if ((database.host === 'localhost' || database.host === '127.0.0.1') && process.env.DB_HOST && process.env.DB_HOST !== 'localhost') {
+            console.log(`Overriding host '${database.host}' with '${process.env.DB_HOST}'`);
+            database.host = process.env.DB_HOST;
         }
 
         // Test database connection first

@@ -1,6 +1,9 @@
 import crypto from 'crypto';
 import axios from 'axios';
 
+import fs from 'fs';
+import path from 'path';
+
 // License configuration
 const LICENSE_SERVER_URL = process.env.LICENSE_SERVER_URL || 'https://license.urbanmis.org';
 const LICENSE_CHECK_INTERVAL = 24 * 60 * 60 * 1000; // 24 hours
@@ -21,9 +24,6 @@ let licenseState = {
 
 // Generate or retrieve instance ID
 function getInstanceId() {
-    const fs = (await import('fs')).default;
-    const path = (await import('path')).default;
-
     const idPath = path.resolve(INSTANCE_ID_FILE);
 
     try {

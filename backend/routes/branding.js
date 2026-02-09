@@ -3,8 +3,8 @@ import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import auth from '../middleware/auth.js';
-import adminOnly from '../middleware/adminOnly.js';
+import { authenticateToken as auth } from '../middleware/auth.js';
+import { adminOnly } from '../middleware/adminOnly.js';
 
 const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
