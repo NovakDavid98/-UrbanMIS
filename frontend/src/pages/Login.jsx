@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import useAuthStore from '../store/authStore';
+import { useBranding } from '../contexts/BrandingContext';
 import { BrainIcon } from '../components/icons/BrainIcon';
 
 function Login() {
   const navigate = useNavigate();
   const { login, isLoading } = useAuthStore();
+  const { orgName, logo } = useBranding();
 
   const [credentials, setCredentials] = useState({
     username: '',
@@ -35,14 +37,18 @@ function Login() {
 
         <div className="w-full max-w-sm space-y-8 relative z-10">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-200 mb-6 transform rotate-3 hover:rotate-6 transition-transform duration-300">
-              <BrainIcon className="w-8 h-8 text-white" />
-            </div>
+            {logo ? (
+              <img src={logo} alt={orgName} className="mx-auto h-20 w-auto rounded-2xl mb-6 shadow-lg shadow-indigo-200 transform rotate-3 hover:rotate-6 transition-transform duration-300" />
+            ) : (
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-2xl shadow-lg shadow-indigo-200 mb-6 transform rotate-3 hover:rotate-6 transition-transform duration-300">
+                <BrainIcon className="w-8 h-8 text-white" />
+              </div>
+            )}
             <h2 className="text-3xl font-bold tracking-tight text-gray-900">
               Vítejte zpět
             </h2>
             <p className="mt-2 text-sm text-gray-600">
-              UrbanMIS
+              {orgName}
             </p>
           </div>
 
@@ -144,9 +150,13 @@ function Login() {
         {/* Content Overlay */}
         <div className="relative z-20 text-center px-12 max-w-2xl backdrop-blur-sm bg-white/5 rounded-3xl p-12 border border-white/10 shadow-2xl">
           <div className="mb-6 flex justify-center">
-            <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-12 mb-4">
-              <BrainIcon className="w-10 h-10 text-white" />
-            </div>
+            {logo ? (
+              <img src={logo} alt={orgName} className="h-24 w-auto rounded-2xl shadow-2xl transform rotate-12 mb-4" />
+            ) : (
+              <div className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl transform rotate-12 mb-4">
+                <BrainIcon className="w-10 h-10 text-white" />
+              </div>
+            )}
           </div>
           <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
             Efektivní správa klientů <br />

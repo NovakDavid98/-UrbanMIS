@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { authAPI } from '../services/api';
 import useAuthStore from '../store/authStore';
 import toast from 'react-hot-toast';
+import BrandingSettings from '../components/BrandingSettings';
 import {
   UserIcon,
   KeyIcon,
   CogIcon,
+  PaintBrushIcon,
   EyeIcon,
   EyeSlashIcon
 } from '@heroicons/react/24/outline';
@@ -47,6 +49,10 @@ function Settings() {
     { id: 'security', name: 'Zabezpečení', icon: KeyIcon },
     { id: 'preferences', name: 'Preference', icon: CogIcon }
   ];
+
+  if (user?.role === 'admin') {
+    tabs.push({ id: 'branding', name: 'Branding', icon: PaintBrushIcon });
+  }
 
   useEffect(() => {
     loadPreferences();
@@ -96,7 +102,7 @@ function Settings() {
 
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (passwordForm.newPassword !== passwordForm.confirmPassword) {
       toast.error('Nová hesla se neshodují');
       return;
@@ -114,13 +120,13 @@ function Settings() {
         currentPassword: passwordForm.currentPassword,
         newPassword: passwordForm.newPassword
       });
-      
+
       setPasswordForm({
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
       });
-      
+
       toast.success('Heslo bylo úspěšně změněno');
     } catch (error) {
       toast.error(error.response?.data?.error || 'Nepodařilo se změnit heslo');
@@ -172,11 +178,10 @@ function Settings() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === tab.id
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm ${activeTab === tab.id
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
               >
                 <Icon className="w-5 h-5" />
                 <span>{tab.name}</span>
@@ -428,6 +433,7 @@ function Settings() {
                       checked={preferences.interface?.sidebarCollapsed || false}
                       onChange={(e) => handlePreferenceChange('interface', 'sidebarCollapsed', e.target.checked)}
                       className="mr-3"
+                    // onChange={(e) => handlePreferenceChange('interface', 'sidebarCollapsed', e.target.checked)}
                     />
                     <span className="text-sm font-medium text-gray-700">
                       Sbalit postranní panel při načtení
@@ -437,6 +443,10 @@ function Settings() {
               </div>
             </div>
           </div>
+        )}
+
+        {activeTab === 'branding' && user?.role === 'admin' && (
+          <BrandingSettings />
         )}
       </div>
     </div>

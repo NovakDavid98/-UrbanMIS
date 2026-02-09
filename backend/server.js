@@ -31,6 +31,8 @@ import ragRoutes from './routes/rag.js';
 import geoRoutes from './routes/geo.js';
 import dataRepairRoutes from './routes/dataRepair.js';
 import licenseRoutes from './routes/license.js';
+import setupRoutes from './routes/setup.js';
+import brandingRoutes from './routes/branding.js';
 import { authLimiter, apiLimiter } from './middleware/rateLimiter.js';
 import { geoblock } from './middleware/geoblock.js';
 import { initializeLicense, addLicenseHeaders } from './middleware/license.js';
@@ -156,6 +158,8 @@ app.use('/api/rag', ragRoutes);
 app.use('/api/geo', geoRoutes);
 app.use('/api/data-repair', dataRepairRoutes);
 app.use('/api/license', licenseRoutes);
+app.use('/api/setup', setupRoutes);
+app.use('/api/branding', brandingRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

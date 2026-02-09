@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import useAuthStore from './store/authStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
 
 // Pages
+import SetupWizard from './pages/SetupWizard';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Clients from './pages/Clients';
@@ -22,27 +23,54 @@ import DataRepair from './pages/DataRepair';
 
 function App() {
   const { isAuthenticated, fetchUser } = useAuthStore();
+  const [setupCheck, setSetupCheck] = useState({ checked: false, complete: true });
 
   useEffect(() => {
+    // Check if setup is complete
+    fetch('/api/setup/status')
+      .then(res => res.json())
+      .then(data => {
+        setSetupCheck({ checked: true, complete: data.setupComplete });
+      })
+      .catch(() => {
+        setSetupCheck({ checked: true, complete: false });
+      });
+
     if (isAuthenticated) {
       fetchUser();
     }
   }, [isAuthenticated, fetchUser]);
 
+  if (!setupCheck.checked) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
   return (
     <>
       <Router>
         <Routes>
+          {/* Setup route */}
+          <Route
+            path="/setup"
+            element={!setupCheck.complete ? <SetupWizard /> : <Navigate to="/login" replace />}
+          />
+
           {/* Public routes */}
           <Route
             path="/login"
-            element={!isAuthenticated ? <Login /> : <Navigate to="/" replace />}
+            element={
+              !setupCheck.complete ? <Navigate to="/setup" replace /> :
+                !isAuthenticated ? <Login /> : <Navigate to="/" replace />
+            }
           />
 
           {/* Protected routes */}
           <Route
             path="/"
-            element={isAuthenticated ? <MainLayout /> : <Navigate to="/login" replace />}
+            element={
+              !setupCheck.complete ? <Navigate to="/setup" replace /> :
+                isAuthenticated ? <MainLayout /> : <Navigate to="/login" replace />
+            }
           >
             <Route index element={<Dashboard />} />
             <Route path="clients" element={<Clients />} />

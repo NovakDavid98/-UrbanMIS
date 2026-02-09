@@ -2,6 +2,7 @@ import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import useAuthStore from '../store/authStore';
 import useChatStore from '../store/chatStore';
+import { useBranding } from '../contexts/BrandingContext';
 import toast from 'react-hot-toast';
 import ChatPanel from '../components/ChatPanel';
 import SyncNotification from '../components/SyncNotification';
@@ -9,6 +10,7 @@ import SyncNotification from '../components/SyncNotification';
 function MainLayout() {
   const navigate = useNavigate();
   const { user, logout } = useAuthStore();
+  const { orgName, logo, t } = useBranding();
   const {
     toggleChatPanel,
     unreadCounts,
@@ -73,7 +75,7 @@ function MainLayout() {
     },
     {
       path: '/clients',
-      label: 'Klienti',
+      label: t('Clients'),
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -82,7 +84,7 @@ function MainLayout() {
     },
     {
       path: '/visits',
-      label: 'Žurnál návštěv',
+      label: `${t('Visit')} Log`,
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
@@ -91,7 +93,7 @@ function MainLayout() {
     },
     {
       path: '/workers',
-      label: 'Pracovníci',
+      label: t('Workers'),
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -180,12 +182,16 @@ function MainLayout() {
         <div className="h-20 flex items-center justify-between px-4 border-b border-slate-700/50">
           {!isSidebarCollapsed && (
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
-                <BrainIcon className="w-6 h-6 text-white" />
-              </div>
+              {logo ? (
+                <img src={logo} alt={orgName} className="h-10 w-auto rounded-xl" />
+              ) : (
+                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                  <BrainIcon className="w-6 h-6 text-white" />
+                </div>
+              )}
               <div className="flex flex-col">
-                <span className="text-sm font-bold text-white">UrbanMIS</span>
-                <span className="text-xs text-slate-400">Streetwork</span>
+                <span className="text-sm font-bold text-white">{orgName}</span>
+                <span className="text-xs text-slate-400">Management System</span>
               </div>
             </div>
           )}
@@ -314,12 +320,16 @@ function MainLayout() {
         {/* Logo Section */}
         <div className="h-20 flex items-center justify-between px-4 border-b border-slate-700/50">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
-              <BrainIcon className="w-6 h-6 text-white" />
-            </div>
+            {logo ? (
+              <img src={logo} alt={orgName} className="h-10 w-auto rounded-xl" />
+            ) : (
+              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center">
+                <BrainIcon className="w-6 h-6 text-white" />
+              </div>
+            )}
             <div className="flex flex-col">
-              <span className="text-sm font-bold text-white">UrbanMIS</span>
-              <span className="text-xs text-slate-400">Streetwork</span>
+              <span className="text-sm font-bold text-white">{orgName}</span>
+              <span className="text-xs text-slate-400">Management System</span>
             </div>
           </div>
           <button
@@ -414,10 +424,14 @@ function MainLayout() {
           </svg>
         </button>
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-            <BrainIcon className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-sm font-bold text-gray-900">UrbanMIS</span>
+          {logo ? (
+            <img src={logo} alt={orgName} className="h-8 w-auto rounded-lg" />
+          ) : (
+            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <BrainIcon className="w-5 h-5 text-white" />
+            </div>
+          )}
+          <span className="text-sm font-bold text-gray-900">{orgName}</span>
         </div>
         <div className="w-8"></div>
       </div>
