@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: ${DB_NAME:-urbanmis}
       POSTGRES_USER: ${DB_USER:-urbanmis}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-changeme}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
@@ -31,8 +31,8 @@ services:
       DB_PORT: 5432
       DB_NAME: ${DB_NAME:-urbanmis}
       DB_USER: ${DB_USER:-urbanmis}
-      DB_PASSWORD: ${DB_PASSWORD:-changeme}
-      JWT_SECRET: ${JWT_SECRET:-changeme_jwt_secret}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
       CORS_ORIGIN: "http://localhost:31236,http://localhost:5173,http://localhost:31235,http://localhost:8080"
     ports:
       - "31235:3001"
