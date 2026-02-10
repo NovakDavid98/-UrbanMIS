@@ -60,6 +60,14 @@ The application will be available at `http://localhost`.
 
 Default credentials: `admin` / `admin123` (change immediately after first login).
 
+### ⚠️ How to Reset / Delete Data
+If you want to completely uninstall the application and **delete all database data**, you must use the `-v` flag to remove the Docker volumes:
+
+```bash
+docker-compose down -v
+```
+*Without the `-v` flag, your database data will persist even if you delete the project folder and clone it again.*
+
 ### Manual Installation
 
 > **⚠️ RECOMMENDATION:** We highly advise using the **Docker setup** described above for the best experience. It handles all dependencies, database configuration, and environment setup automatically.
