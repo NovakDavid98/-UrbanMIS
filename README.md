@@ -39,7 +39,7 @@ The fastest way to deploy UrbanMIS:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/NovakDavid98/-UrbanMIS.git
+   git clone https://github.com/NovakDavid98/-UrbanMIS.git UrbanMIS
    cd UrbanMIS
    ```
 
@@ -69,7 +69,7 @@ Default credentials: `admin` / `admin123` (change immediately after first login)
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/NovakDavid98/-UrbanMIS.git
+   git clone https://github.com/NovakDavid98/-UrbanMIS.git UrbanMIS
    cd UrbanMIS
    ```
 
