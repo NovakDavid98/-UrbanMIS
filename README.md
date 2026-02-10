@@ -85,6 +85,8 @@ Default credentials: `admin` / `admin123` (change immediately after first login)
    ```bash
    cd ../frontend
    npm install
+   # Return to root for next steps
+   cd ..
    ```
 
 4. Initialize the database:
@@ -97,7 +99,7 @@ Default credentials: `admin` / `admin123` (change immediately after first login)
    # Terminal 1: Backend
    cd backend && npm run dev
 
-   # Terminal 2: Frontend
+   # Terminal 2: Frontend (open new terminal in project root)
    cd frontend && npm run dev
    ```
 
