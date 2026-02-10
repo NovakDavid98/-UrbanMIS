@@ -67,6 +67,11 @@ CREATE TABLE clients (
     -- Status
     is_active BOOLEAN DEFAULT true,
     activity_status VARCHAR(50) DEFAULT 'active',
+    went_to_ukraine BOOLEAN DEFAULT false,
+    is_in_ostrava BOOLEAN DEFAULT true,
+    
+    -- Notes
+    notes TEXT,
     
     -- Metadata
     created_by UUID REFERENCES users(id),
