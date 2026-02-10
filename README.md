@@ -2,6 +2,8 @@
 
 UrbanMIS is an open-source Management Information System designed for streetwork and humanitarian organizations. It transforms complex field operations into a streamlined digital workflow, providing a unified platform for case management, visit tracking, and team coordination.
 
+**Made by David Novak from [DigitalHarbour.cz](https://digitalharbour.cz)**
+
 ## Features
 
 ### Case Management
