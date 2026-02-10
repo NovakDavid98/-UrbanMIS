@@ -91,7 +91,23 @@ Default credentials: `admin` / `admin123` (change immediately after first login)
 
 4. Initialize the database:
    ```bash
-   psql -U your_user -d your_database -f database/schema.sql
+   # Enter PostgreSQL interactive mode
+   sudo -u postgres psql
+   ```
+   
+   Inside the `postgres=#` prompt, run:
+   ```sql
+   CREATE DATABASE urbanmis;
+   CREATE USER urbanmis WITH PASSWORD 'change_me_securely';
+   GRANT ALL PRIVILEGES ON DATABASE urbanmis TO urbanmis;
+   \c urbanmis
+   GRANT ALL ON SCHEMA public TO urbanmis;
+   \q
+   ```
+
+   Then import the schema (you will be prompted for the password 'change_me_securely'):
+   ```bash
+   psql -h localhost -U urbanmis -d urbanmis -f database/schema.sql
    ```
 
 5. Start the development servers:
