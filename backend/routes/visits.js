@@ -580,13 +580,22 @@ router.post('/', async (req, res) => {
     // Start transaction
     await query('BEGIN');
 
+    // Parse timeSpent if it's a string (e.g., "HH:MM")
+    let timeSpentMinutes = timeSpent;
+    if (typeof timeSpent === 'string' && timeSpent.includes(':')) {
+      const [hours, minutes] = timeSpent.split(':').map(Number);
+      timeSpentMinutes = (hours * 60) + minutes;
+    } else if (timeSpent) {
+      timeSpentMinutes = parseInt(timeSpent);
+    }
+
     try {
       // Insert visit
       const visitResult = await query(`
         INSERT INTO visits (client_id, visit_date, time_spent, notes, created_by)
         VALUES ($1, $2, $3, $4, $5)
         RETURNING *
-      `, [clientId, visitDate, timeSpent || null, notes || null, userId]);
+      `, [clientId, visitDate, timeSpentMinutes || null, notes || null, userId]);
 
       const visit = visitResult.rows[0];
 
